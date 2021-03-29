@@ -1,0 +1,127 @@
+{
+  "variables": {
+    "ssh_name": "pilab",
+    "ssh_password": "pilab",
+    "hostname": "foreman"
+  },
+
+  "builders": [
+    {
+      "type": "virtualbox-iso",
+      "format": "ova",
+      "output_directory": "builds",
+      "vm_name": "foreman",
+      "disk_size": 20480,
+      "keep_registered": false,
+      "guest_additions_mode": "upload",
+      "guest_additions_path": "VBoxGuestAdditions.iso",
+      "guest_os_type": "Ubuntu_64",
+
+      "vboxmanage": [
+        ["modifyvm", "{{.Name}}", "--memory", "8192"],
+        ["modifyvm", "{{.Name}}", "--cpus", "4"],
+        ["modifyvm", "{{.Name}}", "--vram", "16"]
+
+      ],
+
+      "vboxmanage_post": [
+        ["modifyvm", "{{.Name}}", "--nic1", "none"],
+        ["modifyvm", "{{.Name}}", "--nic3", "bridged", "--bridgeadapter3", "enp9s0"],
+        ["modifyvm", "{{.Name}}", "--nicpromisc3", "allow-all"],
+        ["modifyvm", "{{.Name}}", "--macaddress3", "0800273AB966"]
+      ],
+
+      "iso_urls": [
+         "file://~/Downloads/ubuntu-18.04.5-server-amd64.iso",
+         "https://cdimage.ubuntu.com/ubuntu/releases/bionic/release/ubuntu-18.04.5-server-amd64.iso"
+      ],
+      "iso_checksum": "sha256:8c5fc24894394035402f66f3824beb7234b757dd2b5531379cb310cedfdf0996",
+
+      "ssh_username": "{{ user `ssh_name` }}",
+      "ssh_password": "{{ user `ssh_password` }}",
+      "ssh_wait_timeout": "60m",
+
+      "shutdown_command": "echo '{{ user `ssh_password` }}' | sudo -S shutdown -P now",
+
+      "http_directory": "http",
+      "http_port_min": 9001,
+      "http_port_max": 9001,
+
+      "boot_command": [
+        "<enter><wait>",
+        "<f6><esc>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs>",
+        "/install/vmlinuz ",
+        "initrd=/install/initrd.gz ",
+        "net.ifnames=1 ",
+        "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseeds/ubuntu_bionic.cfg ",
+        "auto=true ",
+        "priority=critical ",
+        "hostname={{ user `hostname`}} ",
+        "fb=false ",
+        "debconf/frontend=noninteractive ",
+        "<enter>"
+      ]
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "execute_command": "echo '{{ user `ssh_password` }}' | sudo -S sh -c '{{ .Vars }} {{ .Path }}'",
+      "expect_disconnect": true,
+      "inline": [
+        "mkdir -p ~/Desktop/pilab",
+        "chown pilab ~/Desktop/pilab",
+        "chgrp pilab ~/Desktop/pilab"
+      ]
+    },
+    {
+      "type": "file",
+      "sources": [
+        "../init.sh",
+        "../variables.sh",
+        "../install.sh",
+        "../config.sh"
+      ],
+      "destination": "~/Desktop/pilab/"
+    },
+    {
+      "type": "shell",
+      "execute_command": "echo '{{ user `ssh_password` }}' | sudo -S sh -c '{{ .Vars }} {{ .Path }}'",
+      "scripts": [
+        "scripts/setup.sh",
+        "scripts/virtualbox.sh",
+        "scripts/sshd.sh",
+        "../install_gnome.sh"
+      ]
+    },
+    {
+      "type": "shell",
+      "execute_command": "echo '{{ user `ssh_password` }}' | sudo -S sh -c '{{ .Vars }} {{ .Path }}'",
+      "expect_disconnect": true,
+      "inline": [
+        "chmod +x ~/Desktop/pilab/init.sh",
+        "chmod +x ~/Desktop/pilab/variables.sh",
+        "chmod +x ~/Desktop/pilab/install.sh",
+        "chmod +x ~/Desktop/pilab/config.sh",
+        "reboot"
+      ]
+    },
+    {
+      "type": "shell",
+      "execute_command": "echo '{{ user `ssh_password` }}' | sudo -S sh -c '{{ .Vars }} {{ .Path }}'",
+      "inline": [
+        "cd ~/Desktop/pilab",
+        "./init.sh"
+      ]
+    }
+  ]
+}

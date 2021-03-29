@@ -1,0 +1,9 @@
+**/bin/
+**/builds/
+**/packer_cache/
+
+*.*~
+*.backup
+*.sic
+*.swp
+*.ova

@@ -5,7 +5,7 @@ These scripts help to build an Ubuntu 18.04 / Foreman 2.1 VirtualBox VM image.
 
 It builds upon [Packer.io](https://www.packer.io) which you first have to manually install.
 
-Before you start, please note, that these scripts were written with a very specific use case, and they probably need changing in several places if they are used by someone else. This applies particular for values inside `variables.sh` and most parts of `init.sh`.
+Before you start, please note, that these scripts were written for a very specific use case, and they probably need changing in several places if they are used by someone else. This applies particular for values inside `variables.sh` and most parts of `init.sh`.
 
 After you have installed Packer.io and cloned this repository, you can execute
 

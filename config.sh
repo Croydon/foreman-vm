@@ -3,7 +3,7 @@
 source variables.sh
 
 # Authenticated Hammer Commands
-hammer="hammer -u '${foreman_username}' -p '${foreman_password}'"
+hammer="hammer -u ${foreman_username} -p ${foreman_password}"
 
 # Configure Ubuntu 20.04 ARM64
 ${hammer} architecture create --name "arm64"

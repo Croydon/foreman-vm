@@ -35,6 +35,9 @@ sudo foreman-installer \
 ### Goodies for making it easier to work with the VM
 ###
 
+# Edit pinned applications
+gsettings set org.gnome.shell favorite-apps "['firefox.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop']"
+
 # Disable screen lock
 gsettings set org.gnome.desktop.screensaver lock-enabled false
 gsettings set org.gnome.desktop.session idle-delay 0

@@ -8,9 +8,6 @@ sudo foreman-installer \
 --enable-foreman \
 --enable-foreman-cli \
 --enable-foreman-proxy \
---enable-foreman-plugin-discovery \
---enable-foreman-plugin-setup \
---enable-foreman-proxy-plugin-discovery \
 --enable-puppet \
 --foreman-initial-admin-username="${foreman_username}" \
 --foreman-initial-admin-password="${foreman_password}" \
@@ -24,11 +21,14 @@ sudo foreman-installer \
 --foreman-proxy-dhcp-nameservers="${ip}"
 
 
+# --enable-foreman-plugin-discovery \
+# --enable-foreman-plugin-setup \
+# --enable-foreman-proxy-plugin-discovery \
 # --enable-foreman-cli-discovery \
 # --foreman-proxy-dhcp-gateway= \
-# Disable Monitoring Plugins explicitly since they did not work
-#--no-enable-foreman-plugin-monitoring \
-#--no-enable-foreman-proxy-plugin-monitoring \
+# # Disable Monitoring Plugins explicitly since they did not work
+# --no-enable-foreman-plugin-monitoring \
+# --no-enable-foreman-proxy-plugin-monitoring \
 
 
 ###

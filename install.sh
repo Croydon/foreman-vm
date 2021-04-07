@@ -29,3 +29,12 @@ sudo foreman-installer \
 # Disable Monitoring Plugins explicitly since they did not work
 #--no-enable-foreman-plugin-monitoring \
 #--no-enable-foreman-proxy-plugin-monitoring \
+
+
+###
+### Goodies for making it easier to work with the VM
+###
+
+# Disable screen lock
+gsettings set org.gnome.desktop.screensaver lock-enabled false
+gsettings set org.gnome.desktop.session idle-delay 0

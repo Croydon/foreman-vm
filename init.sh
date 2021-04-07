@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+source variables.sh
+
 # Using Puppet 6.x is recommended, which is available from the Puppet Labs repository. To use Puppet 6.x with Puppet Agent and Puppet Server
 sudo apt-get -y install ca-certificates
 wget https://apt.puppet.com/puppet6-release-bionic.deb -O /tmp/puppet6-release-bionic.deb
@@ -39,15 +41,6 @@ sudo ufw allow 8140/tcp
 sudo ufw allow 8443/tcp
 
 
-###
-### Goodies for making it easier to work with the VM
-###
-
-# Disable screen lock
-gsettings set org.gnome.desktop.screensaver lock-enabled false
-gsettings set org.gnome.desktop.session idle-delay 0
-
-
 # Install net-tools to get ifconfig
 sudo apt-get -y install net-tools
 
@@ -75,6 +68,5 @@ tar xf worker.tar.xz -C ./tftpboot
 ###
 ### Further configuration
 ###
-source variables.sh
 
 sudo hostnamectl set-hostname ${fqdn}

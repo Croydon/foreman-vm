@@ -18,7 +18,7 @@ Once Packer.io is finished, you should have `.ova` file which you can import in 
 
 The default user credentials for the Ubuntu **AND** Foreman instance are `pilab`/`pilab`.
 
-Some steps can not be done automatically. Once you have started the VM, execute inside the VM the following script to fully install and enable Foreman.
+Some steps can not be done automatically. Once you have started the VM, execute inside the VM the following script **as the pilab user** to fully install and enable Foreman.
 
 ```
     ~/Desktop/pilab/install.sh

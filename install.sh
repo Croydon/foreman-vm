@@ -29,6 +29,8 @@ sudo foreman-installer \
 # # Disable Monitoring Plugins explicitly since they did not work
 # --no-enable-foreman-plugin-monitoring \
 # --no-enable-foreman-proxy-plugin-monitoring \
+# --foreman-proxy-httpboot=true
+# --foreman-proxy-httpboot-listen-on="both"
 
 
 ###

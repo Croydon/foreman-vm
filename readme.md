@@ -36,7 +36,7 @@ Questions people did actual ask and questions people might ask based on my imagi
 
 Foreman is mainly sponsored by Red Hat and part of their commercial Red Hat Satellite product. Hence, using a Linux distro from the Red Hat family might be an actual better choice for a Foreman instance.
 
-That said, this project did start out very different as where it did end up. Neither VirtualBox nor a VM at all were part of the initial plans. Fedora versions have a too short lifespan, so they are not a viable option. RHEL can not be used without creating legal headaches. We tried using CentOS before (but not in VirtualBox) and it did not work out for some unknown issue, and we moved on due to time pressure. When this project started, CentOS might have been a good choice theoretically, now, where their distribution model changes, it might not been a good choice any longer.
+That said, this project did start out very different as where it did end up. Neither VirtualBox nor a VM at all were part of the initial plans. Fedora versions have a too short lifespan, so they are not a viable option. RHEL can not be used without creating legal headaches. We tried using CentOS before (but not in VirtualBox) and it did not work out for some unknown issue, and we moved on due to time pressure. When this project started, CentOS might have been a good choice theoretically, now, where their distribution model changes, it might not be a good choice any longer.
 
 Ubuntu seemed to be the next best choice and it works (more or less).
 

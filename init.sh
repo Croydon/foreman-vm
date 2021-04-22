@@ -61,7 +61,7 @@ sudo apt-get clean
 ###
 # TODO: Find better location / release process for the images
 mkdir ./tftpboot
-wget -c https://cloud.noobys.org/s/yzQNPkAdNxg9Kni/download -O worker.tar.xz
+wget -c https://userv.fbi.h-da.de/pub/pilab/releases/v1.7/pilabos-worker-dev-64bit-v1.7.tar.xz -O worker.tar.xz
 tar xf worker.tar.xz -C ./tftpboot
 
 ## TODO: / FIXME: Download and install Docker & Docker-Compose for providing a tftpserver

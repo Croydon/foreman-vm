@@ -59,7 +59,6 @@ sudo apt-get clean
 ###
 ### Download the PiLab Image
 ###
-# TODO: Find better location / release process for the images
 mkdir ./tftpboot
 wget -c https://userv.fbi.h-da.de/pub/pilab/releases/v1.7/pilabos-worker-dev-64bit-v1.7.tar.xz -O worker.tar.xz
 tar xf worker.tar.xz -C ./tftpboot
